@@ -19,3 +19,4 @@ Route::get('/dashboard/data', [DashboardController::class, 'getData'])->name('da
 
 // Route untuk menampilkan halaman EDA dan Data Cleaning
 Route::get('/dashboard/eda', [DashboardController::class, 'eda'])->name('dashboard.eda');
+Route::get('/run-ml', [DashboardController::class, 'generateMLInsight']);

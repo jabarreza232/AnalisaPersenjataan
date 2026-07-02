@@ -219,7 +219,7 @@
                             <th scope="col" class="px-4 py-3 text-center">Tahun Rilis</th>
 
                             <th scope="col" class="px-4 py-3">Matra</th>
-                            <th scope="col" class="px-4 py-3">Negara Asal</th>
+                            <th scope="col" class="px-4 py-3">Pengguna Utama</th>
                             <th scope="col" class="px-4 py-3 text-right">Harga (USD)</th>
                             <th scope="col" class="px-4 py-3 text-center">Teruji Tempur</th>
                         </tr>
@@ -792,7 +792,7 @@
             <td class="px-4 py-3 text-center text-gray-600">${row.Year_Introduced || '-'}</td> 
             
             <td class="px-4 py-3 text-gray-600">${row.Theater_of_Operation || '-'}</td>
-            <td class="px-4 py-3 text-gray-600">${row.Country_of_Origin || '-'}</td>
+            <td class="px-4 py-3 text-gray-600">${row.Primary_Users || '-'}</td>
             
             <td class="px-4 py-3 text-gray-600 font-mono text-right">${priceFormatted}</td>
             <td class="px-4 py-3 text-center">

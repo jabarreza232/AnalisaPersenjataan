@@ -4,9 +4,59 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\Process\Process;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+use Illuminate\Support\Facades\File;
 
 class DashboardController extends Controller
 {
+   public function generateMLInsight()
+    {
+        // 1. Definisikan path ke script Python
+        $scriptPath = base_path('scripts/ml_predictive_analysis.py');
+
+        $process = new Process(['python3.12', $scriptPath]);
+        $process->setWorkingDirectory(base_path());
+        $process->setTimeout(120); 
+        $process->run();
+
+        // 2. Cek apakah ada error saat script berjalan
+        if (!$process->isSuccessful()) {
+            // Jika error, tampilkan view dengan membawa pesan error asli Python
+            return view('ml_insight_view', [
+                'status' => 'failed',
+                'error_message' => 'Python script crashed!',
+                'python_error' => $process->getErrorOutput(),
+                'ml_data' => null
+            ]);
+        }
+
+        // 3. Ambil output teks dari print() di Python
+        $pythonOutput = $process->getOutput();
+
+        // 4. Cek File JSON hasil ekspor
+        $jsonPath = public_path('data/ml_insight.json');
+        
+        if (\Illuminate\Support\Facades\File::exists($jsonPath)) {
+            $jsonData = json_decode(\Illuminate\Support\Facades\File::get($jsonPath), true);
+            
+            // 5. SUCCESS: Return ke HTML (Blade View) dan bawa datanya
+            return view('ml_insight_view', [
+                'status' => 'success',
+                'terminal_output' => $pythonOutput,
+                'ml_data' => $jsonData,
+                'error_message' => null
+            ]);
+        }
+
+        // Jika script Python sukses jalan tapi file JSON tidak terbentuk
+        return view('ml_insight_view', [
+            'status' => 'failed',
+            'error_message' => 'File JSON gagal dibuat. Pastikan script Python memiliki akses untuk menulis file.',
+            'python_error' => null,
+            'ml_data' => null
+        ]);
+    }
     /**
      * Menampilkan halaman utama dashboard.
      * Mengambil daftar kategori dan tahun untuk ditaruh di Dropdown Filter.
@@ -221,7 +271,7 @@ class DashboardController extends Controller
                 'Weapon_Name', 
                 'Category', 
                 'Combat_Proven', 
-                'Country_of_Origin', // Kolom Rekomendasi
+                'Primary_Users', // Kolom Rekomendasi
                 'Unit_Cost_USD',     // Kolom Rekomendasi
                 'Theater_of_Operation', // Kolom Rekomendasi
                 'Year_Introduced'

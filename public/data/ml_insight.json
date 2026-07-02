@@ -5,19 +5,19 @@
     "insights": [
         {
             "factor": "Harga / Biaya",
-            "importance_score": 57.6913000638874
+            "importance_score": 57.72652676879021
         },
         {
             "factor": "Tahun Rilis (Usia)",
-            "importance_score": 30.41225371047316
+            "importance_score": 30.389044030209856
         },
         {
             "factor": "Tipe Senjata",
-            "importance_score": 7.899678552593925
+            "importance_score": 7.895259725836073
         },
         {
             "factor": "Matra (Darat/Laut/Udara)",
-            "importance_score": 3.996767673045507
+            "importance_score": 3.989169475163859
         }
     ]
 }

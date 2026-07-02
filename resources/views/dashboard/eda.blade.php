@@ -50,7 +50,7 @@
     <!-- Top Navigation / Header -->
     <header class="bg-white border-b border-gray-200 px-6 py-4 flex flex-col sm:flex-row justify-between items-center w-full shadow-sm sticky top-0 z-50">
         <div>
-            <h1 class="text-xl font-bold text-gray-900 tracking-tight">Laporan Analisis Sistem Persenjataan Global</h1>
+            <h1 class="text-xl font-bold text-gray-900 tracking-tight">Laporan Analisis Sistem Persenjataan Indonesia</h1>
             <p class="text-sm text-gray-500 mt-0.5">Tugas Besar Analitik dan Visualisasi Data</p>
         </div>
     </header>
@@ -95,11 +95,11 @@
                 <div class="dashboard-card p-6 border-t-4 border-t-googleBlue">
                     <h3 class="text-base font-bold text-gray-800 mb-2">B. Normalisasi Kolom Spesifik Kategori</h3>
                     <p class="text-sm text-gray-600 mb-4 text-justify">
-                        Beberapa kolom sengaja dibuat kosong (Misal: <code>Barrel_Length_mm</code> hanya untuk senjata api, dan <code>Max_Speed_kmh</code> untuk kendaraan/rudal). Data diseragamkan menggunakan <code>CASE WHEN</code> menjadi "Data Belum Ada" atau "Tidak Berlaku".
+                        Beberapa kolom sengaja dibuat kosong (Misal: <code>Barrel_Length_mm</code> hanya untuk senjata api, senjata mesin, serta meriam pada tank, dan <code>Max_Speed_kmh</code> untuk kendaraan/rudal). Data diseragamkan menggunakan <code>CASE WHEN</code> menjadi "Data Belum Ada" atau "Tidak Berlaku".
                     </p>
                     <div class="bg-gray-50 p-3 rounded border border-gray-200 mt-2">
                         <span class="text-xs font-bold text-gray-500 uppercase">Before Cleaning:</span>
-                        <div class="text-sm font-mono text-gray-700 mt-1">Barrel_Length_mm: NULL (Pada Tank)</div>
+                        <div class="text-sm font-mono text-gray-700 mt-1">Barrel_Length_mm: NULL (Pada Senjata Rudal, Radar, Kendaraan Taktis)</div>
                     </div>
                     <div class="bg-green-50 p-3 rounded border border-green-200 mt-2">
                         <span class="text-xs font-bold text-googleGreen uppercase">After Cleaning:</span>
